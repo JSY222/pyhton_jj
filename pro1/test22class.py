@@ -30,8 +30,8 @@ print(type(ive))
 
 print()
 Singer.title_song = "긴 여름은 가고~~~"
-ive.sing()
-bts.sing()
+ive.sing() # 노래는 긴 여름은 가고~~~
+bts.sing() # 노래는 Stay for a night
 
 niceGroup = ive
 niceGroup.sing()
