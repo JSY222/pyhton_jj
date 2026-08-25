@@ -20,7 +20,7 @@ print(type(bts))
 bts.title_song = "Stay for a night"
 bts.co = '빅히트 엔터테인먼트'
 bts.sing()
-print('bts 소속사 : ', bts.co)
+print('bts 소속사 : ', bts.co) 
 
 print('--------')
 ive = Singer()
