@@ -1,47 +1,54 @@
-def process_sales(input_file="sales.txt", output_file="sales_report.txt"):
-    employee_total = {}   # 직원별 총 판매금액
-    total_sales = 0       # 전체 판매금액
-    records = []           # 콘솔 출력용 (날짜, 이름, 상품명, 수량, 판매금액)
+try:
+    with open('sales.txt', mode='r', encoding='utf-8') as reads:
 
-    # 1. 파일 읽기
-    with open(input_file, "r", encoding="utf-8") as f:
-        for line in f:
-            line = line.strip()
-            if not line:
-                continue
-            date, name, item, qty, price = line.split(",")
-            qty = int(qty)
-            price = int(price)
+        employee_sales = {}  # 직원별 판매금액 담을 딕셔너리
+        total_sales = 0   # 전체 판매금액
 
-            # 2. 판매금액 = 수량 * 단가
-            amount = qty * price
+        print("날짜      이름    상품명   갯수    판매금액")
 
-            # 3. 직원별 총 판매금액 누적
-            employee_total[name] = employee_total.get(name, 0) + amount
+        for line in reads:
+            line = line.strip()  # 줄바꿈 문자 제거
 
-            # 4. 전체 판매금액 누적
-            total_sales += amount
+            if line:
 
-            records.append((date, name, item, qty, amount))
+                data = line.split(',') # 데이터 콤마(,) 단위로 쪼개기.
 
-    # 5. 판매왕 찾기 (총 판매금액이 가장 큰 직원)
-    top_employee = max(employee_total, key=employee_total.get)
-    top_amount = employee_total[top_employee]
+                date = data[0]
+                name = data[1]
+                product = data[2]
+                quantity = int(data[3])
+                price = int(data[4])
 
-    # 콘솔 출력
-    print(f"{'날짜':<12}{'이름':<8}{'상품명':<8}{'갯수':<6}{'판매금액'}")
-    for date, name, item, qty, amount in records:
-        print(f"{date:<12}{name:<8}{item:<8}{qty}개  {amount:,}원")
-    print(f"전체 판매 금액 : {total_sales:,}원")
+                amount = quantity * price # 각 판매금액
+
+                print(f"{date} {name} {product} {quantity}개 {amount}원")
+                
+                if name in employee_sales:
+                    employee_sales[name] += amount
+                    # 이름이 같을 경우 판매금액을 더함
+                else:
+                    employee_sales[name] = amount # 이름이 다를 경우 새로 추가
+
+
+                total_sales = total_sales + amount # 전체 판매금액(누적)
+
+    top_employee = max(employee_sales, key=employee_sales.get) # get을 이용하여 키를 통해 value값을 확인하여 가장 많이 판매한 사람을 찾음.
+    top_amount = employee_sales[top_employee]  # 위 에서 찾은 판매왕의 키를 이용해 벨류 값 가져옴
+
+    print(f"전체 판매 금액 : {total_sales}원")
     print(f"판매왕 : {top_employee}")
 
-    # 6. sales_report.txt 저장
-    with open(output_file, "w", encoding="utf-8") as f:
-        f.write("직원별 판매 실적\n\n")
-        for name, amount in employee_total.items():
-            f.write(f"{name} : {amount:,}원\n")
-        f.write(f"\n전체 판매 금액 : {total_sales:,}원\n")
-        f.write(f"판매왕 : {top_employee} ({top_amount:,}원)\n")
+    # 파일 저장
+    with open('sales_report.txt', mode='w', encoding='utf-8') as writes:
+        writes.write("직원별 판매 실적\n\n")
 
+        for name, amount in employee_sales.items():
+            writes.write(f"{name} : {amount}원\n")
 
-process_sales()
+        writes.write(f'\n전체 판매 금액 : {total_sales:,}원\n')
+        writes.write(f'판매왕 : {top_employee} ({top_amount:,}원)\n') # :,는 3자리마다 콤마 생기게함
+
+    print()
+
+except Exception as e:
+    print("error : ", e)
