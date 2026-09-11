@@ -161,3 +161,42 @@ while i <= 100:
 print('total : ', total) 
 
 print('끝')
+
+
+
+print('문2) 2 ~ 5 까지의 구구단 출력')
+dan = 2
+while dan <= 5:
+    j = 1
+    while j <= 9:
+        print(f'{dan} * {j} = {dan * j}', end =' ')
+        j += 1
+    print()
+    dan += 1
+
+
+print('문5)')
+i = 1  
+
+while i < 11:
+    j = 1
+    while j <= 10:
+        if j <= i - 1:
+            print(' ', end = ' ')
+
+        else:           
+            print('*', end = ' ')
+        j += 1
+    print()
+    i += 1
+
+
+
+
+a = int(input("연도 입력:"))
+
+if a % 4 == 0 and a % 100 != 0:
+    print(f"{a}년은 윤년")
+else:
+    a % 400 == 0
+    print(f"{a}년은 평년")

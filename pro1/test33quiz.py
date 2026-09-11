@@ -69,3 +69,18 @@ s = Salesman("손오공", 29, 1200000, 5000000, 0.25)
 t.data_print()
 r.data_print()
 s.data_print()
+
+print()
+
+class Bicycle:
+    def __init__(self, name, wheel, price):
+        self.name = name
+        self.wheel = wheel
+        self.price = price
+
+    def display(self):
+        retotal_price = self.wheel * self.price
+        print(f"{self.name}님 자전거 바퀴 가격 총액은 {total_price}원 입니다")
+
+gildong = Bicycle('길동', 2, 50000)
+gildong.display()

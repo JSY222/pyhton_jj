@@ -186,3 +186,54 @@ for i in range(1, 7, 1):
         hap = i + j
         if hap % 4 == 0:
             print(i, j)
+
+print('반복문 for를 사용 : 1 ~ 100 사이의 숫자 중 3의 배수 또는 4의 배수 이고 7의 배수가 아닌 수를 출력하고 건수와 합도 출력하는 코드를 작성하시오.')
+
+count = 0
+hap = 0
+
+for i in range(1, 101):
+    if (i % 3 == 0 or i % 4 == 0) and i % 7 != 0:
+        print(i, end=' ')
+        count += 1
+        hap += i
+
+print()
+print('건수 : ', count)
+print('배수의 총합 : ', hap)
+
+count = 0
+hap = 0
+
+for i in range(1, 101):
+    if i % 3 == 0 or (i % 4 == 0 and i % 7 != 0):
+        print(i, end=' ')
+        count += 1
+        hap += i
+
+print()
+print("건수 :", count)
+print("배수의 총합 :", hap)
+
+print()
+*v1, v2, v3 = {1, 2, 3, 4, 5, 1, 2, 3, 4, 5}
+print(v1)
+print(v2)
+print(v3)
+
+
+class Gugudan:
+    def print_odd_dan(self):
+        # 3단부터 9단까지 2씩 증가 (3, 5, 7, 9)
+        dan = 3
+        while dan <= 9:
+            i = 1
+            while i <= 9:
+                print(f'{dan} x {i} = {dan * i}')
+                i += 1
+            print() 
+            dan += 2
+
+# 클래스 인스턴스 생성 및 메서드 실행
+gugudan = Gugudan()
+gugudan.print_odd_dan()
