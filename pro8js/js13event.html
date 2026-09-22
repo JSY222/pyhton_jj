@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event</title>
+
+    <script>
+        function func1(){
+            document.getElementById("show").innerHTML = "전통적인 이벤트 처리 방식"
+            // 버튼1을 눌렀을 때 "전통적인 이벤트 처리"가 뜬다. 
+            // 서버는 이 행위가 작동한지 모르고 브라우저만 알고 있다.
+        }
+
+        let a = 10;
+        let b = {
+            funcNew1:function(){
+                document.getElementById("show").innerHTML = "b 객체의 메서드 처리1";
+            },
+            funcNew2:function(){
+                document.getElementById("show").innerHTML = "b 객체의 메서드 처리2</h1>";
+            }
+        }
+        // 일반 변수를 선언하듯이 b라는 변수에 함수 2개를 객체로 받았다.
+    </script>
+
+    <script>
+        // window.onload = alert("ok")
+        // 새로고침하면 ok가 떨어진다.
+        // 서버로부터 받아온 요청(js13event.html)의 로딩이 모두 끝나면 "ok"가 발생한다. 
+        // = HTML 문서와 이미지, CSS 같은 페이지 리소스가 모두 로딩된 후 자동으로 발생하는 이벤트이다.
+        // 이것도 이벤트 핸들러지만 이벤트 핸들러 함수는 아니다. 무언가 실행을 시키고 싶으면 함수를 실행해야한다.
+
+        window.onload = function() { // 이름이 없는 함수 - 일회용으로 사용하는 함수(휘발성ㅇ)
+            // alert("good") // 로딩이 완료되면 이름없는 이 함수를 수행한다. window.onload
+            const exBtn1 = document.getElementById("btn1"); 
+            // 특정 id(btn1)를 가진 버튼을 읽어 변수 exBtn1에 저장하였다.
+            /*
+            exBtn1.onclick = function() { // 이벤트 장착 = W3C가 권장하는 방식
+            document.getElementById("show").innerHTML = "클릭1 선택 와우";
+
+            }
+            */
+            exBtn1.onclick = bt1Func;  // 함수 호출
+
+            const exBtn2 = document.getElementsByName("myBtn")  // name 지적, 중복이 가능하므로 배열에 기억
+            console.log(exBtn2.length);
+            exBtn2[0].onclick = function(){
+                document.getElementById("show").innerHTML = "클릭2 누름";
+            }
+            exBtn2[1].onclick = function(){
+                document.getElementById("show").innerHTML = "<h2>클릭3을 누르다니</h2>";
+            }
+            
+            const exBtn4 = document.getElementsByTagName("button")[3];  // tag명 지적.
+            exBtn4.onclick = function(){
+                document.getElementById("show").innerHTML = "클릭4 선택 선택</h2>";
+            }
+
+            // 이벤트 연결 및 해제
+            // addEventListener("이벤트종류", 핸들러함수)
+            document.getElementById("btn5").addEventListener("click", abcFunc);  // 이벤트 연결
+        }
+
+        function bt1Func(){
+            document.getElementById("show").innerHTML = "클릭1 선택 와우";
+        }
+
+        function abcFunc(){
+            // alert("abc");
+            document.getElementById("show").innerHTML = "클릭5 이벤트 연결 처리";
+
+            document.getElementById("btn5").removeEventListener("click", abcFunc)  // 이벤트 해제
+        }
+    </script>
+</head>
+
+
+<body>
+    <h2>이벤트 처리 : 이벤트 핸들러 연결 </h2>
+    <input type = "button" value = "버튼1" onclick = "func1()"><br> <!--버튼1 생성-->
+    <input type = "button" value = "버튼2" onclick = "b.funcNew1()"><br> <!--버튼2 생성-->
+    <input type = "button" value = "버튼3" onclick = "b.funcNew2()"><br> <!--버튼3 생성--> <!--b에서 funcNew2의 요소를 수행한다 -->
+    
+    <hr>
+
+    <!-- <button id = "btn1" onclick = "이벤트처리함수()">라벨</button> : html 내에 javascript를 기술한 것이다. W3C는 비권장!
+    -->
+    <button id = "btn1"> 클릭1 </button><br>
+    <button id = "btn2" name = "myBtn"> 클릭2 </button><br>
+    <button id = "btn3" name = "myBtn"> 클릭3 </button><br>
+    <button id = "btn4"> 클릭4 </button><br>
+    <button id = "btn5"> 클릭5 </button><br>
+    <!--그냥 버튼만 생긴것이다-->
+    <!--그럼 여기서 이벤트를 어떻게 JavaScript와 연결하는가..? <head>에서 JavaScript에서 이벤트 함수를 선언해준다-->
+
+    <div id = "show"></div>
+    <!--div 태그가 줄 아래에 존재하고 있는 상태고 결과값을 여기에 출력할 예정이다.-->
+</body>
+</html>
