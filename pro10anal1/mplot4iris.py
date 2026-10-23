@@ -43,3 +43,4 @@ plt.show()
 import seaborn as sns
 sns.pairplot(iris_data, hue='Species', height=2)
 plt.show()
+

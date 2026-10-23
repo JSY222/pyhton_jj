@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>회사 인사 자료 조회</title>
+</head>
+<body>
+    <h2>회사 인사 자료 조회</h2>
+    <form action="{{ url_for('dbshow') }}" method="get">
+        <label for="dept">부서명:</label>
+        <input id="dept" type="text" name="dept" placeholder="예)총무부">
+        <button type="submit">조회</button>
+    </form>
+    <p><a href="{{ url_for('dbshow') }}">전체 직원 및 통계 조회</a></p>
+</body>
+</html>
