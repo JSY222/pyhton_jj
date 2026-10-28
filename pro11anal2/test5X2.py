@@ -40,7 +40,7 @@ print(f"expected:\n{expected}")
 print("\n\n독립성 검정 2------------")
 # 남성과 여성의 스포츠 음료 선호도 검정
 # 
-# 귀무 : 성별과 음료 선허는 서로 관련이 없다.
+# 귀무 : 성별과 음료 선호는 서로 관련이 없다.
 # 대립 : 성별과 음료 선호는 서로 관련이 있다.
 
 # 교차표 생성
@@ -53,7 +53,7 @@ data = pd.DataFrame({
 print(data)
 
 chi2, pv, dof, expected = stats.chi2_contingency(data)
-print("p-vlaue : ", pv)  # 0.0033880
+print("p-value : ", pv)  # 0.0033880
 print("chi2 : ", chi2)   # 11.375
 print("dof : ", dof)     #  2
 print("expected : ", expected)

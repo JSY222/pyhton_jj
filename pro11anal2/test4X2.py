@@ -29,7 +29,7 @@ import numpy as np
 # 기대도수
 total = data['관측도수'].sum()
 expected = [total / len(data)] * len(data)
-x = np.arange(len(data))   # 음로 수만큼 x축 좌표
+x = np.arange(len(data))   # 음료 수만큼 x축 좌표
 width = 0.35  # 막대 너비
 
 plt.figure(figsize=(10, 5))
