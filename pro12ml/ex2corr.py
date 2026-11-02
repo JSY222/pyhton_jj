@@ -68,4 +68,4 @@ for i in range(len(corr)):
         s = "{:.3f}".format(corr.values[i, j])
         ax.text(j + 0.5, len(corr) - (i + 0.5), s, ha="center", va="center")
 ax.axis("off")
-plt.show()
+plt.show()  
